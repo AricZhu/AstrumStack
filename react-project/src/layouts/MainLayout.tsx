@@ -4,8 +4,6 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  TableOutlined,
-  FormOutlined,
   HomeOutlined,
   UserOutlined,
   LogoutOutlined,
@@ -33,16 +31,6 @@ const MainLayout: React.FC = () => {
       key: '/',
       icon: <HomeOutlined />,
       label: '首页',
-    },
-    {
-      key: '/table',
-      icon: <TableOutlined />,
-      label: '表格页',
-    },
-    {
-      key: '/form',
-      icon: <FormOutlined />,
-      label: '表单页',
     },
   ];
 
@@ -108,11 +96,19 @@ const MainLayout: React.FC = () => {
           alignItems: 'center',
           justifyContent: 'space-between'
         }}>
-          {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-            className: 'trigger',
-            onClick: () => setCollapsed(!collapsed),
-            style: { fontSize: '18px', cursor: 'pointer' },
-          })}
+          {collapsed ? (
+            <MenuUnfoldOutlined
+              className="trigger"
+              onClick={() => setCollapsed(!collapsed)}
+              style={{ fontSize: '18px', cursor: 'pointer' }}
+            />
+          ) : (
+            <MenuFoldOutlined
+              className="trigger"
+              onClick={() => setCollapsed(!collapsed)}
+              style={{ fontSize: '18px', cursor: 'pointer' }}
+            />
+          )}
           <Dropdown menu={{ items: userMenuItems }} placement="bottomRight">
             <Space style={{ cursor: 'pointer' }}>
               <Avatar icon={<UserOutlined />} />
